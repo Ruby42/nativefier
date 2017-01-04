@@ -118,7 +118,8 @@ function createMainWindow(options, onAppQuit, setDockBadge) {
         goForward: onGoForward,
         getCurrentUrl: getCurrentUrl,
         clearAppData: clearAppData,
-        disableDevTools: options.disableDevTools
+        disableDevTools: options.disableDevTools,
+        disableTopMenu: options.disableTopMenu
     };
 
     createMenu(menuOptions);

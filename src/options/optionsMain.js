@@ -65,6 +65,7 @@ function optionsFactory(inpOptions, callback) {
         disableContextMenu: inpOptions.disableContextMenu,
         disableDevTools: inpOptions.disableDevTools,
         crashReporter: inpOptions.crashReporter,
+        disableTopMenu: inpOptions.disableTopMenu,
         // workaround for electron-packager#375
         tmpdir: false,
         zoom: inpOptions.zoom || 1.0,

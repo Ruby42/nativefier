@@ -10,9 +10,15 @@ import {Menu, shell, clipboard} from 'electron';
  * @param getCurrentUrl
  * @param clearAppData
  * @param disableDevTools
+ * @param disableTopMenu
  */
-function createMenu({nativefierVersion, appQuit, zoomIn, zoomOut, goBack, goForward, getCurrentUrl, clearAppData, disableDevTools}) {
+function createMenu({nativefierVersion, appQuit, zoomIn, zoomOut, goBack, goForward, getCurrentUrl, clearAppData, disableDevTools, disableTopMenu}) {
     if (Menu.getApplicationMenu()) {
+        return;
+    }
+
+    if (disableTopMenu) {
+        Menu.setApplicationMenu(null);
         return;
     }
 
@@ -43,14 +49,14 @@ function createMenu({nativefierVersion, appQuit, zoomIn, zoomOut, goBack, goForw
                     accelerator: 'CmdOrCtrl+C',
                     role: 'copy'
                 },
-                {
-                    label: 'Copy Current URL',
-                    accelerator: 'CmdOrCtrl+L',
-                    click: () => {
-                        const currentURL = getCurrentUrl();
-                        clipboard.writeText(currentURL);
-                    }
-                },
+                // {
+                //     label: 'Copy Current URL',
+                //     accelerator: 'CmdOrCtrl+L',
+                //     click: () => {
+                //         const currentURL = getCurrentUrl();
+                //         clipboard.writeText(currentURL);
+                //     }
+                // },
                 {
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
@@ -72,20 +78,20 @@ function createMenu({nativefierVersion, appQuit, zoomIn, zoomOut, goBack, goForw
         {
             label: 'View',
             submenu: [
-                {
-                    label: 'Back',
-                    accelerator: 'CmdOrCtrl+[',
-                    click: () => {
-                        goBack();
-                    }
-                },
-                {
-                    label: 'Forward',
-                    accelerator: 'CmdOrCtrl+]',
-                    click: () => {
-                        goForward();
-                    }
-                },
+                // {
+                //     label: 'Back',
+                //     accelerator: 'CmdOrCtrl+[',
+                //     click: () => {
+                //         goBack();
+                //     }
+                // },
+                // {
+                //     label: 'Forward',
+                //     accelerator: 'CmdOrCtrl+]',
+                //     click: () => {
+                //         goForward();
+                //     }
+                // },
                 {
                     label: 'Reload',
                     accelerator: 'CmdOrCtrl+R',
@@ -156,36 +162,36 @@ function createMenu({nativefierVersion, appQuit, zoomIn, zoomOut, goBack, goForw
             label: 'Window',
             role: 'window',
             submenu: [
-                {
-                    label: 'Minimize',
-                    accelerator: 'CmdOrCtrl+M',
-                    role: 'minimize'
-                },
+                // {
+                //     label: 'Minimize',
+                //     accelerator: 'CmdOrCtrl+M',
+                //     role: 'minimize'
+                // },
                 {
                     label: 'Close',
                     accelerator: 'CmdOrCtrl+W',
                     role: 'close'
                 }
             ]
-        },
-        {
-            label: 'Help',
-            role: 'help',
-            submenu: [
-                {
-                    label: `Built with Nativefier v${nativefierVersion}`,
-                    click: () => {
-                        shell.openExternal('https://github.com/jiahaog/nativefier');
-                    }
-                },
-                {
-                    label: 'Report an Issue',
-                    click: () => {
-                        shell.openExternal('https://github.com/jiahaog/nativefier/issues');
-                    }
-                }
-            ]
         }
+        // {
+        //     label: 'Help',
+        //     role: 'help',
+        //     submenu: [
+        //         {
+        //             label: `Built with Nativefier v${nativefierVersion}`,
+        //             click: () => {
+        //                 shell.openExternal('https://github.com/jiahaog/nativefier');
+        //             }
+        //         },
+        //         {
+        //             label: 'Report an Issue',
+        //             click: () => {
+        //                 shell.openExternal('https://github.com/jiahaog/nativefier/issues');
+        //             }
+        //         }
+        //     ]
+        // }
     ];
 
     if (disableDevTools) {
